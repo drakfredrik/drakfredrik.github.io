@@ -1,7 +1,7 @@
 ---
 order: 2
 type: columns
-title: What We Do and Do Not
+title: What We Do and You Do
 columns:
   - title: Strategy
     text: We help you think clearly about direction, positioning, and what to build next.
