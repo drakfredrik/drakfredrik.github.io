@@ -1,2 +1,0 @@
-# nordpapp
-nordpapp public web
