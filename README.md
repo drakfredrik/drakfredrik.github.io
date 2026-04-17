@@ -1,2 +1,2 @@
 # nordpapp
-nordpapp websida
+nordpapp public web
