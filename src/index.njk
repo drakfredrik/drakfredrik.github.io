@@ -1,0 +1,11 @@
+---
+layout: base.njk
+---
+
+{% for section in collections.sections %}
+  {% if section.data.type == "hero" %}
+    {% include "section-hero.njk" %}
+  {% elif section.data.type == "columns" %}
+    {% include "section-columns.njk" %}
+  {% endif %}
+{% endfor %}
