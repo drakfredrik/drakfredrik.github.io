@@ -198,6 +198,8 @@
           
           
           
+          
+          
     <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
       <article class="min-h-[280px] md:min-h-[320px] bg-navy py-8 flex flex-col justify-center md:order-1">
         <div class="section-text-content-half text-left split-text-panel--left">
@@ -217,13 +219,17 @@
 
       <article
         class="min-h-[280px] md:min-h-[320px] bg-center bg-cover md:order-2"
-        style="background-image: url('/images/trebolit.jpeg'); background-position: calc(50% + 0px) calc(50% + -60px);"
+        style="background-image: url('/images/trebolit.jpeg'); background-position: calc(50% + 0px) calc(50% + 0px);"
+        data-offset-x="0" data-offset-y="-60"
+        data-offset-x-mobile="0" data-offset-y-mobile="0"
       >
       </article>
     </div>
         
       
         
+          
+          
           
           
           
@@ -246,7 +252,9 @@
 
       <article
         class="min-h-[280px] md:min-h-[320px] bg-center bg-cover md:order-1"
-        style="background-image: url('/images/ytpapp.webp'); background-position: calc(50% + 0px) calc(50% + -120px);"
+        style="background-image: url('/images/ytpapp.webp'); background-position: calc(50% + 0px) calc(50% + -20px);"
+        data-offset-x="0" data-offset-y="-120"
+        data-offset-x-mobile="0" data-offset-y-mobile="-20"
       >
       </article>
     </div>
@@ -255,6 +263,21 @@
     
   </div>
 </section>
+
+<script>
+  (function () {
+    function applyOffsets() {
+      var isMobile = window.innerWidth < 768;
+      document.querySelectorAll('[data-offset-x]').forEach(function (el) {
+        var x = isMobile ? el.dataset.offsetXMobile : el.dataset.offsetX;
+        var y = isMobile ? el.dataset.offsetYMobile : el.dataset.offsetY;
+        el.style.backgroundPosition = 'calc(50% + ' + x + 'px) calc(50% + ' + y + 'px)';
+      });
+    }
+    applyOffsets();
+    window.addEventListener('resize', applyOffsets);
+  })();
+</script>
 
   
 
@@ -399,16 +422,18 @@
     </main>
 
     <!-- Footer --><footer class="relative bg-navy py-[50px] md:py-36 px-6 overflow-hidden">
-      <img src="/images/NP_logo_white.png" alt="" aria-hidden="true" class="absolute opacity-5 pointer-events-none select-none" style="right: 0; top: 0; transform: translate(0px, -60px);" />
+      <img src="/images/NP_logo_white.png" alt="" aria-hidden="true" class="absolute opacity-5 pointer-events-none select-none md:hidden" style="right: 0; top: 0; transform: translate(px, px);" />
+      <img src="/images/NP_logo_white.png" alt="" aria-hidden="true" class="absolute opacity-5 pointer-events-none select-none hidden md:block" style="right: 0; top: 0; transform: translate(px, px);" />
       <div class="relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
 
         <div>
-          <p class="text-brand-red text-xl font-bold mb-3">Nordpapp AB</p>
+          <p class="text-brand-red text-xl font-bold mb-3"></p>
           <p class="text-white text-sm">
-            <a href="mailto:fredrik.drakesby@nordpapp.se" class="hover:text-brand-red transition-colors">fredrik.drakesby@nordpapp.se</a>
+            <a href="#" id="footer-email" class="hover:text-brand-red transition-colors" data-u="" data-d=""></a>
           </p>
+          <script>(function(){var a=document.getElementById('footer-email');var e=a.dataset.u+'@'+a.dataset.d;a.href='mailto:'+e;a.textContent=e;})();</script>
           <p class="text-white text-sm mt-1">
-            <a href="tel:11188" class="hover:text-brand-red transition-colors">11188</a>
+            <a href="tel:" class="hover:text-brand-red transition-colors"></a>
           </p>
         </div>
 
