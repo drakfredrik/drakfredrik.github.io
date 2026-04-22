@@ -258,6 +258,141 @@
 
   
 
+  
+    <section class="bg-brand-beige py-16 px-6">
+  <div class="max-w-2xl mx-auto">
+
+    
+
+    
+    <h2 class="text-navy text-3xl md:text-4xl font-bold leading-tight mb-4 text-center">Kontakta ett takproffs!</h2>
+    
+
+    
+    <p class="text-navy text-base leading-relaxed mb-10 text-center">Fyll i formuläret så hör vi av oss inom kort.</p>
+    
+
+    <form
+      action="https://api.web3forms.com/submit"
+      method="POST"
+      id="contact-form"
+      class="flex flex-col gap-5"
+    >
+      <input type="hidden" name="access_key" value="f0d9d443-0f2b-4285-afc4-05ce7e5cb7cd">
+      <input type="hidden" name="subject" value="Ny kontaktförfrågan – NORDPAPP">
+      <input type="checkbox" name="botcheck" class="hidden" style="display:none">
+
+      <div class="flex flex-col gap-1">
+        <label for="name" class="text-navy text-sm font-semibold">Namn <span class="text-brand-red">*</span></label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          class="bg-white border border-navy/20 rounded px-4 py-3 text-navy placeholder-navy/40 focus:outline-none focus:ring-2 focus:ring-navy"
+          placeholder="Ditt namn"
+        >
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="phone" class="text-navy text-sm font-semibold">Telefon <span class="text-brand-red">*</span></label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          required
+          class="bg-white border border-navy/20 rounded px-4 py-3 text-navy placeholder-navy/40 focus:outline-none focus:ring-2 focus:ring-navy"
+          placeholder="Ditt telefonnummer"
+        >
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="email" class="text-navy text-sm font-semibold">E-postadress</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="bg-white border border-navy/20 rounded px-4 py-3 text-navy placeholder-navy/40 focus:outline-none focus:ring-2 focus:ring-navy"
+          placeholder="Din e-postadress"
+        >
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="address" class="text-navy text-sm font-semibold">Adress</label>
+        <input
+          type="text"
+          id="address"
+          name="address"
+          class="bg-white border border-navy/20 rounded px-4 py-3 text-navy placeholder-navy/40 focus:outline-none focus:ring-2 focus:ring-navy"
+          placeholder="Gatuadress, postnummer, postort"
+        >
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label for="message" class="text-navy text-sm font-semibold">Meddelande <span class="text-brand-red">*</span></label>
+        <textarea
+          id="message"
+          name="message"
+          required
+          rows="5"
+          class="bg-white border border-navy/20 rounded px-4 py-3 text-navy placeholder-navy/40 focus:outline-none focus:ring-2 focus:ring-navy resize-none"
+          placeholder="Berätta om ditt projekt..."
+        ></textarea>
+      </div>
+
+      <div id="form-result" class="text-sm font-semibold text-center hidden"></div>
+
+      <button
+        type="submit"
+        class="bg-brand-red text-white font-semibold py-3 px-8 rounded hover:bg-brand-red/80 transition-colors self-center mt-2"
+      >
+        Skicka
+      </button>
+    </form>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var form = document.getElementById('contact-form');
+    var result = document.getElementById('form-result');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = 'Skickar...';
+      var data = new FormData(form);
+      fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
+        .then(function (res) { return res.json(); })
+        .then(function (json) {
+          result.classList.remove('hidden');
+          if (json.success) {
+            result.classList.remove('text-brand-red');
+            result.classList.add('text-navy');
+            result.textContent = 'Tack! Vi återkommer till dig så snart som möjligt.';
+            form.reset();
+          } else {
+            result.classList.remove('text-navy');
+            result.classList.add('text-brand-red');
+            result.textContent = 'Något gick fel. Försök igen eller ring oss direkt.';
+          }
+          btn.disabled = false;
+          btn.textContent = 'Skicka';
+        })
+        .catch(function () {
+          result.classList.remove('hidden', 'text-navy');
+          result.classList.add('text-brand-red');
+          result.textContent = 'Något gick fel. Försök igen eller ring oss direkt.';
+          btn.disabled = false;
+          btn.textContent = 'Skicka';
+        });
+    });
+  })();
+</script>
+
+  
+
 
     </main>
 
